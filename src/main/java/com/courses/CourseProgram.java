@@ -5,11 +5,12 @@ import java.util.Scanner;
 
 import com.courses.CourseDaoImpl;
 
-public class Program {
+@SuppressWarnings("unused")
+public class CourseProgram {
 	private static Scanner sc = new Scanner(System.in);
-	public static int menuList() {
-		int choice;
-		System.out.println("-------------------Menu---------------------");
+	public static int courseMenuList() {
+		int courseChoice;
+		System.out.println("-------------------Course Menu---------------------");
 		System.out.println("Enter");
 		System.out.println("0 for Exit");
 		System.out.println("1 for Adding a new Course");
@@ -18,17 +19,17 @@ public class Program {
 		System.out.println("4 for Updating Course details");
 		System.out.println("5 for Deleting a Course");
 		System.out.println("Enter your choice: ");
-		choice = sc.nextInt();
+		courseChoice = sc.nextInt();
 		System.out.println("-------------------------------------------");
-		return choice;
+		return courseChoice;
 	}
-	public static void main(String[] args) {
-		int choice;
+	public static void  courseManagement(){
+		int courseChoice;
 		Course c = new Course();
 		try(CourseDaoImpl courseDao = new CourseDaoImpl())
 		{
-			while((choice = menuList()) !=0) {
-				switch(choice) {
+			while((courseChoice = courseMenuList()) !=0) {
+				switch(courseChoice) {
 				case 1:{
 					c.acceptCourseDetails();
 					c.displayCourseDetails(c);

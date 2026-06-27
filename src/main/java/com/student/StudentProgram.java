@@ -1,14 +1,18 @@
 package com.student;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class Program {
+import com.student.dto.DisplayResultDTO;
+
+@SuppressWarnings("unused")
+public class StudentProgram {
 	private static Scanner sc = new Scanner(System.in);
-	public static int menuList() {
-		int choice;
-		System.out.println("-------------------Menu---------------------");
+	public static int studentMenuList() {
+		int studentChoice;
+		System.out.println("-------------------Student Menu---------------------");
 		System.out.println("Enter");
 		System.out.println("0 for Exit");
 		System.out.println("1 for Adding a new Student");
@@ -16,18 +20,19 @@ public class Program {
 		System.out.println("3 for Find a Student by Roll Number");
 		System.out.println("4 for Updating Student details");
 		System.out.println("5 for Deleting a Student");
+		System.out.println("6.for Display Result Board");
 		System.out.println("Enter your choice: ");
-		choice = sc.nextInt();
+		studentChoice = sc.nextInt();
 		System.out.println("-------------------------------------------");
-		return choice;
+		return studentChoice;
 	}
-	public static void main(String[] args) {
-		int choice;
+	public static void studentManagement() {
+		int studentChoice;
 		Student s = new Student();
 		try(StudentDaoImpl studentDao = new StudentDaoImpl())
 		{
-			while((choice = menuList()) !=0) {
-				switch(choice) {
+			while((studentChoice = studentMenuList()) !=0) {
+				switch(studentChoice) {
 				case 1:{
 					s.acceptStudentDetails();
 					s.displayStudentDetails(s);
@@ -76,7 +81,12 @@ public class Program {
 					}
 					break;
 					}
-				
+				case 6:
+				{
+					List<DisplayResultDTO> dtoList = studentDao.displayResult();
+					showResult(dtoList);
+					break;
+				}
 				default:
 					System.out.println("Invalid Choice");
 					}
@@ -96,6 +106,20 @@ public class Program {
 			System.out.println("Gender: "+s.getGender());
 			System.out.println("Enrollement Date: "+s.getEnrollment_date());
 			System.out.println();
+		}
+	}
+	public static void showResult(List<DisplayResultDTO> dtoList) {
+		for(DisplayResultDTO dto:dtoList) {
+			System.out.println("=============Student Result============");
+			System.out.println("First Name: "+dto.getFirstName());
+			System.out.println("Last Name: "+dto.getLastName());
+			System.out.println("Semester: "+dto.getSemester());
+			System.out.println("Course Code: "+dto.getCourseCode());
+			System.out.println("Course Name: "+dto.getCourseName());
+			System.out.println("Credits: "+dto.getCredits());
+			System.out.println("Grade: "+dto.getGrade());
+			System.out.println("GPA: "+dto.getGpa());
+			System.out.println("=======================================");
 		}
 	}
 }

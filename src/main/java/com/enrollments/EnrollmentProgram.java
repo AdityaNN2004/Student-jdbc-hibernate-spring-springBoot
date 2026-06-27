@@ -4,28 +4,28 @@ import java.util.List;
 import java.util.Scanner;
 
 
-public class Program {
+public class EnrollmentProgram {
 	private static Scanner sc = new Scanner(System.in);
-	public static int menuList() {
-		int choice;
-		System.out.println("-------------------Menu---------------------");
+	public static int enrollmentMenuList() {
+		int enrollmentChoice;
+		System.out.println("-------------------Enrollment Menu---------------------");
 		System.out.println("Enter");
 		System.out.println("0 for Exit");
 		System.out.println("1 for Adding a new Enrollment");
-		System.out.println("2 for Get list of all 3Enrollments");
+		System.out.println("2 for Get list of all Enrollments");
 		System.out.println("3 for Find Course Enrollments by Roll Number");
 		System.out.println("Enter your choice: ");
-		choice = sc.nextInt();
+		enrollmentChoice = sc.nextInt();
 		System.out.println("-------------------------------------------");
-		return choice;
+		return enrollmentChoice;
 	}
-	public static void main(String[] args) {
-		int choice;
+	public static void enrollmentManagement() {
+		int enrollmentChoice;
 		Enrollment enrollment = new Enrollment();
 		try(EnrollmentDaoImpl enrollmentDao = new EnrollmentDaoImpl())
 		{
-			while((choice = menuList()) !=0) {
-				switch(choice) {
+			while((enrollmentChoice = enrollmentMenuList()) !=0) {
+				switch(enrollmentChoice) {
 				case 1:{
 					enrollment.acceptEnrollmentDetails();
 					enrollment.displayEnrollmentDetails(enrollment);

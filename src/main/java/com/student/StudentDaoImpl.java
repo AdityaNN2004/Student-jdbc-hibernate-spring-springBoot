@@ -1,4 +1,5 @@
 package com.student;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -9,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.student.dbutils.DatabaseConnection;
+import com.student.dto.DisplayResultDTO;
 
 class StudentDaoImpl implements StudentDao{
 	private Connection conn ;
@@ -142,5 +144,22 @@ class StudentDaoImpl implements StudentDao{
 			}
 		
 		return rowsAffected;
+	}
+	@Override
+	public List<DisplayResultDTO> displayResult() throws Exception {
+		String sql = "{call displayResult}";
+		List<DisplayResultDTO> dtoList  = new ArrayList<>();
+		try(CallableStatement callStmt = conn.prepareCall(sql)){
+			try(ResultSet rs = callStmt.executeQuery()){
+				while(rs.next()) {
+					DisplayResultDTO dto = new DisplayResultDTO(rs.getString("First Name"),rs.getString("Last Name") , rs.getString("Semester"), rs.getString("Course Code"), rs.getString("Course Name"), rs.getInt("Credits"), rs.getString("Grade"), rs.getDouble("GPA"));
+					dtoList.add(dto);
+				}
+			}
+		}catch(Exception e) {
+			System.err.println("Database Error");
+			e.printStackTrace();
+		}
+		return dtoList;
 	}
 }
