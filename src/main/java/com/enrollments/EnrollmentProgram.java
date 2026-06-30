@@ -28,7 +28,7 @@ public class EnrollmentProgram {
 				switch(enrollmentChoice) {
 				case 1:{
 					enrollment.acceptEnrollmentDetails();
-					enrollment.displayEnrollmentDetails(enrollment);
+					Enrollment.displayEnrollmentDetails(enrollment);
 					int rowsAffcted = enrollmentDao.addNewEnrollment(enrollment);
 					System.out.println("Rows Affcted: "+rowsAffcted);
 					break;

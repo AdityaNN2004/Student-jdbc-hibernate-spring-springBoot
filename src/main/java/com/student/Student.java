@@ -98,39 +98,42 @@ public class Student {
 	}
 	public void acceptStudentDetails() {
 //		Student s = new Student();
-		Scanner sc = new Scanner(System.in);
-		System.out.println("Enter Student details");
-		System.out.println("Enter Roll Number: ");
-		String rollNo = sc.nextLine();
-		this.setRollNo(rollNo);
-		System.out.println("Enter First Name: ");
-		String fName = sc.nextLine();
-		this.setFirstName(fName);
-		System.out.println("Enter Last Name:");
-		String lName =sc.nextLine();
-		this.setLastName(lName);
-		System.out.println("Enter Email:");
-		String email = sc.nextLine();
-		this.setEmail(email);
-		System.out.println("Enter Date of Birth in format YYYY-MM-DD:");
-		String dateOfBirth = sc.nextLine();
-		LocalDate dob = LocalDate.parse(dateOfBirth);
-		this.setDob(dob);
-		System.out.println("Enter Address");
-		String addr = sc.nextLine();
-		this.setAddress(addr);
-		System.out.println("Enter GPA:");
-		double gpa =sc.nextDouble();
-		this.setGpa(gpa);
-		System.out.println("Enter Gender-M for Male and F for Female:");
-		char gender = sc.next().charAt(0);
-		sc.nextLine();
-		this.setGender(gender);
-		System.out.println("Enter Enrollment Date in format YYYY-MM-DD:");
-		String enroll_date= sc.nextLine();
-		LocalDate enrollmentDate = LocalDate.parse(enroll_date);
-		this.setEnrollment_date(enrollmentDate);
-	
+		try(Scanner sc = new Scanner(System.in)){
+			System.out.println("Enter Student details");
+			System.out.println("Enter Roll Number: ");
+			String rollNo = sc.nextLine();
+			this.setRollNo(rollNo);
+			System.out.println("Enter First Name: ");
+			String fName = sc.nextLine();
+			this.setFirstName(fName);
+			System.out.println("Enter Last Name:");
+			String lName =sc.nextLine();
+			this.setLastName(lName);
+			System.out.println("Enter Email:");
+			String email = sc.nextLine();
+			this.setEmail(email);
+			System.out.println("Enter Date of Birth in format YYYY-MM-DD:");
+			String dateOfBirth = sc.nextLine();
+			LocalDate dob = LocalDate.parse(dateOfBirth);
+			this.setDob(dob);
+			System.out.println("Enter Address");
+			String addr = sc.nextLine();
+			this.setAddress(addr);
+			System.out.println("Enter GPA:");
+			double gpa =sc.nextDouble();
+			this.setGpa(gpa);
+			System.out.println("Enter Gender-M for Male and F for Female:");
+			char gender = sc.next().charAt(0);
+			sc.nextLine();
+			this.setGender(gender);
+			System.out.println("Enter Enrollment Date in format YYYY-MM-DD:");
+			String enroll_date= sc.nextLine();
+			LocalDate enrollmentDate = LocalDate.parse(enroll_date);
+			this.setEnrollment_date(enrollmentDate);
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 	public void displayStudentDetails(Student s) {
 		System.out.println("------------Student Details----------------");

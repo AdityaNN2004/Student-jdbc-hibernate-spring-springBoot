@@ -74,7 +74,7 @@ public class Enrollment {
 		System.out.println("------------------------------------------------------");
 		
 	}
-	public void displayEnrollmentDetails(Enrollment enrollment) {
+	public static void displayEnrollmentDetails(Enrollment enrollment) {
 		// TODO Auto-generated method stub
 		System.out.println("Roll Number: "+enrollment.getRollNo());
 		System.out.println("Course code:"+enrollment.getCourseCode());
