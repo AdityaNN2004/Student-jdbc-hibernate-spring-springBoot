@@ -1,0 +1,37 @@
+package com.studentSpringBoot.service;
+
+import java.util.List;
+
+import org.jspecify.annotations.Nullable;
+import org.springframework.http.ProblemDetail;
+
+import com.studentSpringBoot.dto.request.StudentSignUpRequestDto;
+import com.studentSpringBoot.dto.request.UpdateStudentContactRequestDto;
+
+//import org.jspecify.annotations.Nullable;
+
+import com.studentSpringBoot.dto.response.ApiResponse;
+import com.studentSpringBoot.dto.response.StudentResponseDto;
+import com.studentSpringBoot.entity.Student;
+
+public interface StudentService {
+
+	List<Student> getAllStudents();
+
+	
+//	StudentResponseDto addUser(StudentSignUpRequestDto studentSignUpRequestDto);
+
+
+	StudentResponseDto findByRollNumber(String rollNo);
+
+
+	Student registerStudent(StudentSignUpRequestDto signUpRequestDto, Long deptId);
+
+
+	ApiResponse deleteStudent(Long id);
+
+
+	ApiResponse editStudentContact(UpdateStudentContactRequestDto updateStudentContactRequestDto);
+
+		
+}

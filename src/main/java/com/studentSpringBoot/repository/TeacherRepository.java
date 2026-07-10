@@ -1,0 +1,17 @@
+package com.studentSpringBoot.repository;
+
+import java.util.Collection;
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.studentSpringBoot.dto.response.TeacherResponse;
+import com.studentSpringBoot.entity.Teacher;
+
+public interface TeacherRepository extends JpaRepository<Teacher, Long> {
+
+	Teacher findByMobileNo(String mobileNo);
+
+	List<Teacher> findByDepartmentId(Long deptId);
+
+}

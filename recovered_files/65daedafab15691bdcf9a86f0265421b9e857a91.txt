@@ -1,0 +1,18 @@
+package com.studentSpringBoot.service;
+
+import java.util.List;
+
+import com.studentSpringBoot.dto.response.EnrollmentResponseDto;
+import com.studentSpringBoot.entity.Enrollment;
+
+public interface EnrollmentService {
+
+	EnrollmentResponseDto getEnrollments(Long studentId, Long courseId, String courseCode);
+
+	EnrollmentResponseDto updateEnrollmentStatus(Long enrollmentId, String status);
+
+	EnrollmentResponseDto submitFinalGrade(Long enrollmentId, String grade);
+
+	List<EnrollmentResponseDto> getReportCard(Long studentId);
+
+}

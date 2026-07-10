@@ -1,0 +1,23 @@
+package com.studentSpringBoot.service;
+
+import java.util.List;
+
+import org.jspecify.annotations.Nullable;
+
+import com.studentSpringBoot.dto.request.AuthRequestDto;
+import com.studentSpringBoot.dto.response.AuthResponse;
+import com.studentSpringBoot.entity.User;
+
+
+
+public interface UserService {
+
+	List<User> getAllUsers();
+
+	User signUp(User user);
+
+	AuthResponse authenticate(AuthRequestDto authRequestDto);
+
+	
+
+}

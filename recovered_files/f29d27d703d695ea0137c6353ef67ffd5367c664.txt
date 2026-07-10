@@ -1,0 +1,24 @@
+package com.studentSpringBoot.service;
+
+import java.util.List;
+
+import org.jspecify.annotations.Nullable;
+
+import com.studentSpringBoot.dto.request.TeacherOnboardRequestDto;
+import com.studentSpringBoot.dto.response.ApiResponse;
+import com.studentSpringBoot.dto.response.TeacherResponse;
+import com.studentSpringBoot.entity.Teacher;
+
+public interface TeacherService {
+
+	List<TeacherResponse> getAllTeacher();
+
+	TeacherResponse onboardTeacher(TeacherOnboardRequestDto teacherOnboardRequestDto);
+
+	TeacherResponse getByMobileNo(String mobileNo);
+
+	ApiResponse editSalary(Long id, double salary);
+
+	List<TeacherResponse> getTeacherByDept(Long deptId);
+
+}

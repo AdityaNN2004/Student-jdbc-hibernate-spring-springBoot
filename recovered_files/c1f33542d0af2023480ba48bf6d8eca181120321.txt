@@ -1,0 +1,136 @@
+package com.studentSpringBoot.exceptions;
+
+import java.time.LocalDateTime;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+import jakarta.servlet.http.HttpServletRequest;
+
+
+@RestControllerAdvice
+public class GlobalExceptionHandler{
+	@ExceptionHandler(ResourceNotFoundException.class)
+	public ResponseEntity<ErrorResponse> resourceNotFoundExceptionHandler(RuntimeException ex, HttpServletRequest request){
+		HttpStatus status = HttpStatus.NOT_FOUND;
+		ErrorResponse errorBody = new ErrorResponse(
+				LocalDateTime.now(),
+				status.value(), 
+				status.getReasonPhrase(), 
+				ex.getMessage(), 
+				request.getRequestURI()
+				);
+		return new  ResponseEntity<>(errorBody,status);
+	}
+	@ExceptionHandler(StudentProfileMissingException.class)
+	public ResponseEntity<ErrorResponse> studentProfileMisssingHandler(RuntimeException ex,HttpServletRequest request){
+		HttpStatus status = HttpStatus.NOT_FOUND;
+		ErrorResponse errorBody = new ErrorResponse(
+				LocalDateTime.now(),
+				status.value(), 
+				status.getReasonPhrase(), 
+				ex.getMessage(), 
+				request.getRequestURI()
+				);
+		return new  ResponseEntity<>(errorBody,status);
+	}
+	@ExceptionHandler(UserNotFoundException.class)
+	public ResponseEntity<ErrorResponse> userNotFoundExceptionHandler(RuntimeException ex,HttpServletRequest request){
+		HttpStatus status = HttpStatus.NOT_FOUND;
+		ErrorResponse errorBody = new ErrorResponse(
+				LocalDateTime.now(),
+				status.value(), 
+				status.getReasonPhrase(), 
+				ex.getMessage(), 
+				request.getRequestURI()
+				);
+		return new  ResponseEntity<>(errorBody,status);
+	}
+	@ExceptionHandler(UnAuthentivatedUserException.class)
+	public ResponseEntity<ErrorResponse> unAuthenticatedUserExceptionHandler(RuntimeException ex,HttpServletRequest request){
+		HttpStatus status = HttpStatus.UNAUTHORIZED;
+		ErrorResponse errorBody = new ErrorResponse(
+				LocalDateTime.now(),
+				status.value(), 
+				status.getReasonPhrase(), 
+				ex.getMessage(), 
+				request.getRequestURI()
+				);
+		return new  ResponseEntity<>(errorBody,status);
+	}
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<ErrorResponse> illegalArgumentExceptionHandler(IllegalArgumentException ex, HttpServletRequest request) {
+        
+        HttpStatus status = HttpStatus.BAD_REQUEST;
+        
+        ErrorResponse errorBody = new ErrorResponse(
+            LocalDateTime.now(),
+            status.value(),                     // 400
+            status.getReasonPhrase(),           
+            ex.getMessage(),
+            request.getRequestURI()
+        );
+        
+        return new ResponseEntity<>(errorBody, status);
+    }
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ErrorResponse> globalExceptionHandler(Exception ex, HttpServletRequest request) {
+        
+        HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
+        
+        ErrorResponse errorBody = new ErrorResponse(
+            LocalDateTime.now(),
+            status.value(),                     // 500
+            status.getReasonPhrase(),           // "Internal Server Error"
+            "An unexpected error occurred: " + ex.getMessage(),
+            request.getRequestURI()
+        );
+        
+        return new ResponseEntity<>(errorBody, status);
+    }
+    @ExceptionHandler(ApiException.class)
+    public ResponseEntity<ErrorResponse> apiExceptionHandler(RuntimeException ex,HttpServletRequest request){
+    	HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
+    	ErrorResponse errorBody = new ErrorResponse(
+    				LocalDateTime.now(),
+    				status.value(),
+    				status.getReasonPhrase(),
+    				ex.getMessage(),
+    				request.getRequestURI()
+    			);
+    	return new ResponseEntity<>(errorBody,status);
+    }
+    @ExceptionHandler(TeacherProfileMissingException.class)
+    public ResponseEntity<ErrorResponse> teacherProfileMissingExceptionHandler(RuntimeException ex,HttpServletRequest request){
+    	HttpStatus status = HttpStatus.NOT_FOUND;
+    	ErrorResponse errorBody = new ErrorResponse(LocalDateTime.now(), status.value(),
+    			status.getReasonPhrase(), 
+    			ex.getMessage(),
+    			request.getRequestURI());
+    	return new ResponseEntity<>(errorBody,status);
+    }
+    @ExceptionHandler(CourseNotFoundException.class)
+    public ResponseEntity<ErrorResponse> courseNotFoundExceptionHandler(RuntimeException ex ,HttpServletRequest request){
+    	HttpStatus status = HttpStatus.NOT_FOUND;
+    	ErrorResponse error = new ErrorResponse(LocalDateTime.now(), 
+    			status.value(), 
+    			status.getReasonPhrase(),
+    			ex.getMessage(),
+    			request.getRequestURI() 
+    			);
+    	return new ResponseEntity<>(error,status);
+    }
+    @ExceptionHandler(EnrollmentNotFoundException.class)
+   public ResponseEntity<ErrorResponse> enrollmentNotFoundExceptionHandler(RuntimeException ex, HttpServletRequest request){
+	   HttpStatus status = HttpStatus.NOT_FOUND;
+	   ErrorResponse errorbody = new ErrorResponse(LocalDateTime.now(),
+			   status.value(), 
+			   status.getReasonPhrase(), 
+			   ex.getMessage(), 
+			   request.getRequestURI());
+	   return new ResponseEntity<>(errorbody,status);
+   }
+}

@@ -1,0 +1,15 @@
+package com.studentSpringBoot.repository;
+
+import java.util.Optional;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.studentSpringBoot.entity.Student;
+
+public interface StudentRepository extends JpaRepository<Student, Long> {
+
+	boolean existsByRollNo(String rollNo);
+
+	Optional<Student> findByRollNo(String rollNo);
+
+}
