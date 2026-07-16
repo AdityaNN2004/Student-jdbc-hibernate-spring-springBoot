@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.studentSpringBoot.dto.request.EnrollmentRequestDto;
 import com.studentSpringBoot.dto.response.EnrollmentResponseDto;
 import com.studentSpringBoot.entity.Course;
 import com.studentSpringBoot.entity.Enrollment;
@@ -18,7 +19,8 @@ import com.studentSpringBoot.repository.StudentRepository;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-
+import lombok.extern.slf4j.Slf4j;
+@Slf4j
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -27,17 +29,20 @@ public class EnrollmentServiceImpl implements EnrollmentService {
 	private final StudentRepository studentRepository;
 	private final CourseRepository courseRepository;
 	@Override
-	public EnrollmentResponseDto getEnrollments(Long studentId, Long courseId, String semesterCode) {
-		Student student = studentRepository.findById(studentId).orElseThrow(()-> new StudentProfileMissingException("Student with ID: "+studentId+ " is not found"));
-		Course course = courseRepository.findById(courseId).orElseThrow(()-> new CourseNotFoundException("Course with ID: "+courseId+" is not found"));
+	public EnrollmentResponseDto enroll(EnrollmentRequestDto enrollmentRequestDto) {
+		log.info("Processing enrollment request for Student ID: {} into Course ID: {} for Semester: {}", 
+				enrollmentRequestDto.getStudentId(), enrollmentRequestDto.getCourseId(), enrollmentRequestDto.getSemesterCode());
+		Student student = studentRepository.findById(enrollmentRequestDto.getStudentId()).orElseThrow(()-> new StudentProfileMissingException("Student with ID: "+enrollmentRequestDto.getStudentId()+ " is not found"));
+		Course course = courseRepository.findById(enrollmentRequestDto.getCourseId()).orElseThrow(()-> new CourseNotFoundException("Course with ID: "+enrollmentRequestDto.getCourseId()+" is not found"));
 		Enrollment enrollment = new Enrollment();
-		enrollment.setSemesterCode(semesterCode);;
+		enrollment.setSemesterCode(enrollmentRequestDto.getSemesterCode());;
 		enrollment.setGpa(0.0);
 		enrollment.setEnrollmentStatus(EnrollmentStatus.ACTIVE);
 		enrollment.setCourse(course);
 		enrollment.setStudent(student);
 		enrollment.setDepartment(course.getDepartment());	
 		Enrollment savedEnrollment = enrollmentRepository.save(enrollment);
+		log.info("Successfully committed Enrollment Ledger Entry. Generated Record ID: [{}]", savedEnrollment.getId());
 		return mapToResponseDto(savedEnrollment,null);
 	}
 	@Override

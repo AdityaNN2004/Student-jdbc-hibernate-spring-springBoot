@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,13 +24,13 @@ import com.studentSpringBoot.exceptions.ApiException;
 import com.studentSpringBoot.service.CourseService;
 
 import lombok.RequiredArgsConstructor;
-
+@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 @RequestMapping("/courses")
 @RequiredArgsConstructor
 public class CourseController {
 	private final CourseService courseService;
-	@GetMapping("/list")
+	@GetMapping
 	public ResponseEntity<?> getCourseList(){
 		List<Course> courseList = courseService.getAllCourses();
 		try {

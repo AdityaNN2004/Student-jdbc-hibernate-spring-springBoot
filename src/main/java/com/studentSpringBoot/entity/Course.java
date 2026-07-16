@@ -1,5 +1,7 @@
 package com.studentSpringBoot.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -19,6 +21,7 @@ import lombok.ToString;
 @Setter
 @ToString(exclude = {"department", "teacher"}) 
 @Entity
+@JsonIgnoreProperties("courses")
 @AttributeOverride(name="id", column = @Column(name="course_id"))
 @Table(name="courses")
 public class Course extends BaseEntity {
@@ -32,6 +35,7 @@ public class Course extends BaseEntity {
 	private int credits;
 
 	@ManyToOne(fetch=FetchType.LAZY)
+    @JsonIgnoreProperties("courses")
 	@JoinColumn(name = "department_id", nullable = false)
 	private Department department;
 

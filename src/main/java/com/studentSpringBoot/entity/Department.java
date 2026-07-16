@@ -2,6 +2,8 @@ package com.studentSpringBoot.entity;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -29,7 +31,7 @@ public class Department extends BaseEntity {
 	
 	@Column(name="head_of_department", length = 60)
 	private String hod;
-	
+	@JsonIgnoreProperties("department")
 	@OneToMany(mappedBy = "department", cascade = CascadeType.ALL)
 	private List<Course> courses;
 }

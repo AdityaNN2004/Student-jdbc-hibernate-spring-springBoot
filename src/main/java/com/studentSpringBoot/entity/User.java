@@ -25,7 +25,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @Table(name="users")
 @AttributeOverride(name = "id",column = @Column(name="user_id"))
-@SoftDelete(columnName = "is_deleted", strategy = SoftDeleteType.ACTIVE) 
+@SoftDelete(columnName = "is_deleted", strategy = SoftDeleteType.DELETED) 
 public class User extends BaseEntity{
 	
 	@Column(nullable = false,unique = true,length=80)

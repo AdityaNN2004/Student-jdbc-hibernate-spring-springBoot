@@ -1,5 +1,0 @@
-package com.studentSpringBoot.entity;
-
-public enum UserRole {
-	TEACHER,STUDENT,ADMIN
-}

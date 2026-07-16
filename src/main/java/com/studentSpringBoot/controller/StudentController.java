@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,7 +30,7 @@ import com.studentSpringBoot.entity.Student;
 import com.studentSpringBoot.service.StudentService;
 
 import lombok.RequiredArgsConstructor;
-
+@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 @RestControllerAdvice
 @RequiredArgsConstructor
@@ -40,7 +41,7 @@ public class StudentController {
 	private final StudentService studentService;
 
 
-	@GetMapping("/list")
+	@GetMapping
 	public ResponseEntity<?> getStudentList(){
 		List<Student> studentList = studentService.getAllStudents(); // all active students
 		try {
@@ -53,10 +54,10 @@ public class StudentController {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e);
 		}
 	}
-	@GetMapping("/search-student")
+	@GetMapping("/profile")
 	public ResponseEntity<?> findStudentByRollNo(@RequestParam String rollNo){
 		try {
-			StudentResponseDto studentResponseDto = studentService.findByRollNumber(rollNo);
+			StudentResponseDto studentResponseDto = studentService.getStudentProfile(rollNo);
 			return ResponseEntity.status(HttpStatus.FOUND).body(studentResponseDto);
 		}catch(Exception e) {
 			e.printStackTrace();

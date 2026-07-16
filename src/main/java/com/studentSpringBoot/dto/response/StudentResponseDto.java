@@ -16,4 +16,5 @@ public class StudentResponseDto {
 	private String rollNo;
 	private Long deptId;
 	private String deptName;
+	private String documentUrl;
 }

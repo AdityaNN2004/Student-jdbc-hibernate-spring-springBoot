@@ -16,6 +16,7 @@ import lombok.ToString;
 public class TeacherResponse {
 	private Long userId;
 	private Long deptId;
+	private Long teacherId;
 	private String fullName;
 	private String email;
 	private LocalDate doj;

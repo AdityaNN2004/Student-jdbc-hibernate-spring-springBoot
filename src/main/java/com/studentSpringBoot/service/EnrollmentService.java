@@ -2,6 +2,7 @@ package com.studentSpringBoot.service;
 
 import java.util.List;
 
+import com.studentSpringBoot.dto.request.EnrollmentRequestDto;
 import com.studentSpringBoot.dto.response.EnrollmentResponseDto;
 
 public interface EnrollmentService {
@@ -12,6 +13,8 @@ public interface EnrollmentService {
 
 	EnrollmentResponseDto updateEnrollmentStatus(Long enrollmentId, String status);
 
-	EnrollmentResponseDto getEnrollments(Long studentId, Long courseId, String semesterCode);
+//	EnrollmentResponseDto getEnrollments(Long studentId, Long courseId, String semesterCode);
+
+	EnrollmentResponseDto enroll(EnrollmentRequestDto enrollmentRequestDto);
 
 }

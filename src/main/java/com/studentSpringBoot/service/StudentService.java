@@ -2,6 +2,8 @@ package com.studentSpringBoot.service;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.studentSpringBoot.dto.request.StudentSignUpRequestDto;
 import com.studentSpringBoot.dto.request.UpdateStudentContactRequestDto;
 import com.studentSpringBoot.dto.response.ApiResponse;
@@ -12,11 +14,13 @@ public interface StudentService {
 
     List<Student> getAllStudents();
 
-    StudentResponseDto findByRollNumber(String rollNo);
+    StudentResponseDto getStudentProfile(String rollNo);
 
-    Student registerStudent(StudentSignUpRequestDto signUpRequestDto, Long deptId);
+//    Student registerStudent(StudentSignUpRequestDto signUpRequestDto, Long deptId);
 
     ApiResponse editStudentContact(UpdateStudentContactRequestDto updateStudentContactRequestDto);
 
     ApiResponse deleteStudent(Long id);
+
+	Student registerStudent(StudentSignUpRequestDto signUpRequestDto, MultipartFile documentFile, Long deptId);
 }

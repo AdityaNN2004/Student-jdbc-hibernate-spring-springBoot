@@ -4,8 +4,10 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 //import org.jspecify.annotations.Nullable;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.studentSpringBoot.dto.request.StudentSignUpRequestDto;
 import com.studentSpringBoot.dto.request.UpdateStudentContactRequestDto;
@@ -33,30 +35,36 @@ public class StudentServiceImpl implements StudentService {
 	private final StudentRepository studentRepository;
 	private final DepartmentRepository departmentRepository;
 	private final UserRepository userRepository;
+	private final PasswordEncoder passwordEncoder;
+	private final FileStorageService fileStorageService;
 	@Override
 	public List<Student> getAllStudents() {
 		return studentRepository.findAll();
 	}
 	@Override
-	public StudentResponseDto findByRollNumber(String rollNo) {
-		Optional<Student> student = studentRepository.findByRollNo(rollNo);
-		if(student.isEmpty()) {
-			throw  new StudentProfileMissingException("Student with Roll Number: "+rollNo+" Not Found");
-		}
-		String fullName = student.get().getFirstName()+" "+student.get().getMiddleName()+" "+student.get().getLastName();
+	public StudentResponseDto getStudentProfile(String rollNo) {
+		Student student = studentRepository.findByRollNo(rollNo).orElseThrow(()-> new StudentProfileMissingException("Student with Roll Number: "+rollNo+" Not Found"));
+		
+		String fullName = student.getFirstName()+" "+student.getMiddleName()+" "+student.getLastName();
+		String temporarySecureLink =null;
+		if (student.getDocumentUrl() != null && !student.getDocumentUrl().trim().isEmpty()) {
+	        // Reads private object key from MySQL, passes it to S3 presigner, and intercepts temporary web URL
+	        temporarySecureLink = fileStorageService.generatePresignedUrl(student.getDocumentUrl());
+	    }
 		
 		StudentResponseDto studentResponseDto = new StudentResponseDto(
-					student.get().getId(),
+					student.getId(),
 					fullName,
-					student.get().getUser().getEmail(),
-					student.get().getRollNo(),
-					student.get().getDepartment().getId(),
-					student.get().getDepartment().getDepartmentName()
+					student.getUser().getEmail(),
+					student.getRollNo(),
+					student.getDepartment().getId(),
+					student.getDepartment().getDepartmentName(),
+					temporarySecureLink
 				);
 		return studentResponseDto;
 	}
 	@Override
-	public Student registerStudent(StudentSignUpRequestDto signUpRequestDto, Long deptId) {
+	public Student registerStudent(StudentSignUpRequestDto signUpRequestDto,MultipartFile documentFile ,Long deptId) {
 		if(userRepository.existsByEmail(signUpRequestDto.getEmail())) {
 			throw new EmailAlreadyExistsException("Email: "+signUpRequestDto.getEmail()+" is already registered.");
 		}
@@ -65,23 +73,31 @@ public class StudentServiceImpl implements StudentService {
 		}
 		Department dept = departmentRepository.findById(deptId).
 									orElseThrow(()-> new DepartmentNotFoundException("Department with ID: "+deptId+" is not found"));
+		
 		User user = new User();
 		user.setEmail(signUpRequestDto.getEmail());
-		user.setPassword(signUpRequestDto.getPassword());
+		user.setPassword(passwordEncoder.encode(signUpRequestDto.getPassword()));
 		user.setUserRole(UserRole.STUDENT);
 		User savedUser = userRepository.save(user);
 		Student student = new Student();
 		student.setFirstName(signUpRequestDto.getFirstName());
-		student.setLastName(signUpRequestDto.getLastName());
 		student.setMiddleName(signUpRequestDto.getMiddleName());
+		student.setLastName(signUpRequestDto.getLastName());
 		student.setMobileNo(signUpRequestDto.getMobileNo());
+		student.setRollNo(signUpRequestDto.getRollNo());
 		student.setEnrollmentDate(LocalDate.now());
 		student.setAddress(signUpRequestDto.getAddress());
 		student.setDob(signUpRequestDto.getDob());
 		
 		student.setDepartment(dept);
 		student.setUser(savedUser);
-		
+		if (documentFile != null && !documentFile.isEmpty()) {
+		    // Stores file in S3 and returns the key string (NOT the full web URL)
+		    String objectKey = fileStorageService.storeFile(documentFile);
+		    
+		    // Saves "documents/uuid_filename.pdf" directly to the MySQL database column
+		    student.setDocumentUrl(objectKey); 
+		}
 		return studentRepository.save(student);
 	}
 	

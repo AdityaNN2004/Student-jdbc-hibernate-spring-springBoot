@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.studentSpringBoot.dto.response.DepartmentResponseDto;
 import com.studentSpringBoot.entity.Department;
 import com.studentSpringBoot.exceptions.DepartmentNotFoundException;
 import com.studentSpringBoot.repository.DepartmentRepository;
@@ -18,8 +19,18 @@ import lombok.RequiredArgsConstructor;
 public class DepartmentServiceImpl implements DepartmentService {
 	private final DepartmentRepository deptRepository;
 	@Override
-	public List<Department> getAllDepartments() {
-		return deptRepository.findAll();
+	public List<DepartmentResponseDto> getAllDepartments() {
+		return deptRepository.findAll()
+				.stream()
+				.map(dept ->{
+					DepartmentResponseDto departmentResponseDto = new DepartmentResponseDto();
+					departmentResponseDto.setId(dept.getId());
+					departmentResponseDto.setDepartmentName(dept.getDepartmentName());
+					departmentResponseDto.setHod(dept.getHod());
+					return departmentResponseDto;
+				})
+				.toList()
+				;
 	}
 	@Override
 	public Department addDept(Department dept) {

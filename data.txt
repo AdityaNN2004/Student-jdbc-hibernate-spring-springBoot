@@ -1,0 +1,349 @@
+===================================================================================================================
+TEACHER-------------------------------------------------------------------------------------------------------
+{
+  "email": "professor.aditya@school.com",
+  "password": "SecurePassword123",
+  "firstName": "Aditya",
+  "middleName": "Nagnath",
+  "lastName": "Sharma",
+  "mobileNo": "+919876543210",
+  "dob": "1988-05-15",
+  "doj": "2026-07-01",
+  "address": "123 Academic Lane, Pune, Maharashtra",
+  "salary": 85000.0,
+  "departmentId": 1
+}
+
+{
+  "email": "tesla.instructor@school.com",
+  "password": "FacultyPassword789",
+  "firstName": "Nikola",
+  "middleName": "Chris",
+  "lastName": "Tesla",
+  "mobileNo": "+919876543201",
+  "dob": "1975-07-10",
+  "doj": "2026-06-01",
+  "address": "77 Alternating Current Blvd, Wardha, Maharashtra",
+  "salary": 92000.0,
+  "departmentId": 2
+}
+
+{
+  "email": "marconi.pro@school.com",
+  "password": "RadioWaveSecure00",
+  "firstName": "Guglielmo",
+  "middleName": "Gigi",
+  "lastName": "Marconi",
+  "mobileNo": "+919876543202",
+  "dob": "1980-04-25",
+  "doj": "2026-07-05",
+  "address": "404 Wireless Avenue, Navi Mumbai, Maharashtra",
+  "salary": 88000.0,
+  "departmentId": 3
+}
+
+
+{
+  "email": "curie.ai@school.com",
+  "password": "QuantumCompute88",
+  "firstName": "Marie",
+  "middleName": "Sklodowska",
+  "lastName": "Curie",
+  "mobileNo": "+919876543204",
+  "dob": "1978-11-07",
+  "doj": "2026-07-01",
+  "address": "Block C, 505 Lab Avenue, Hadapsar, Pune",
+  "salary": 98000.0,
+  "departmentId": 4
+}
+
+
+{
+  "email": "torvalds.kernel@school.com",
+  "password": "LinuxOpenSource0",
+  "firstName": "Linus",
+  "middleName": "Benedict",
+  "lastName": "Torvalds",
+  "mobileNo": "+919876543205",
+  "dob": "1982-12-28",
+  "doj": "2026-07-03",
+  "address": "Kernel Suite 10, Magarpatta City, Pune",
+  "salary": 95000.0,
+  "departmentId": 5
+}
+
+{
+  "email": "mv.sir@school.com",
+  "password": "DamBuilder2026",
+  "firstName": "Mokshagundam",
+  "middleName": "Sir",
+  "lastName": "Visvesvaraya",
+  "mobileNo": "+919876543206",
+  "dob": "1970-09-15",
+  "doj": "2026-06-15",
+  "address": "Engineers Enclave, Shivajinagar, Pune",
+  "salary": 110000.0,
+  "departmentId": 6
+}
+
+
+{
+  "email": "kalam.missile@school.com",
+  "password": "WingsOfFire1999",
+  "firstName": "Avul",
+  "middleName": "Pakir",
+  "lastName": "Kalam",
+  "mobileNo": "+919876543207",
+  "dob": "1971-10-15",
+  "doj": "2026-07-01",
+  "address": "Space Research Complex, Viman Nagar, Pune",
+  "salary": 120000.0,
+  "departmentId": 7
+}
+
+{
+  "email": "jobs.apple@school.com",
+  "password": "ThinkDifferent1",
+  "firstName": "Steve",
+  "middleName": "Paul",
+  "lastName": "Jobs",
+  "mobileNo": "+919876543208",
+  "dob": "1975-02-24",
+  "doj": "2026-07-09",
+  "address": "01 Infinite Loop, Hinjewadi Phase 3, Pune",
+  "salary": 90000.0,
+  "departmentId": 8
+}
+
+
+==================================================================================================================
+STUDENT-------------------------------------------------------------------------------------------------------
+{
+  "email": "student.rahul@school.com",
+  "password": "StudentPassword456",
+  "firstName": "Rahul",
+  "middleName":"Virat",
+  "lastName": "Verma",
+  "mobileNo": "+919876543222",
+  "rollNo": "CS101A",
+  "address": "45 Hostel Block B, Pune, Maharashtra",
+  "dob": "2005-08-20",
+  "documentUrl": "https://cloud-storage.com"
+}
+
+{
+  "email": "student.priya@school.com",
+  "password": "PriyaPassword999",
+  "firstName": "Priya",
+  "middleName": "Anand",
+  "lastName": "Patil",
+  "mobileNo": "+919876543233",
+  "rollNo": "ME101A",
+  "address": "Flat 302, Shanti Niwas, Kothrud, Pune",
+  "dob": "2006-03-12",
+  "documentUrl": "https://cloud-storage.com"
+}
+
+
+{
+  "email": "student.amit@school.com",
+  "password": "AmitSecurePass11",
+  "firstName": "Amit",
+  "middleName": "Kumar",
+  "lastName": "Mishra",
+  "mobileNo": "+919876543244",
+  "rollNo": "CS102B",
+  "address": "Room 12, Dynamic Boys Hostel, Karve Nagar, Pune",
+  "dob": "2005-11-05",
+  "documentUrl": "https://cloud-storage.com"
+}
+
+
+{
+  "email": "student.rohan@school.com",
+  "password": "RohanMatrix77",
+  "firstName": "Rohan",
+  "middleName": "Kumar",
+  "lastName": "Joshi",
+  "mobileNo": "+919876543255",
+  "rollNo": "AI101A",
+  "address": "Hostel 3, Room 104, Karve Nagar, Pune",
+  "dob": "2005-09-14",
+  "documentUrl": "https://cloud-storage.com"
+}
+
+{
+  "email": "student.ananya@school.com",
+  "password": "AnanyaSecure88",
+  "firstName": "Ananya",
+  "middleName": "Rajesh",
+  "lastName": "Kulkarni",
+  "mobileNo": "+919876543266",
+  "rollNo": "CY101A",
+  "address": "Flat 401, Sapphire Heights, Wakad, Pune",
+  "dob": "2006-01-22",
+  "documentUrl": "https://cloud-storage.com"
+}
+
+{
+  "email": "student.vikram@school.com",
+  "password": "VikramConcrete5",
+  "firstName": "Vikram",
+  "middleName": "Pratap",
+  "lastName": "Singh",
+  "mobileNo": "+919876543277",
+  "rollNo": "CE101B",
+  "address": "Royal Residency, Baner, Pune",
+  "dob": "2005-05-19",
+  "documentUrl": "https://cloud-storage.com"
+}
+
+{
+  "email": "student.sneha@school.com",
+  "password": "SnehaOrbit2026",
+  "firstName": "Sneha",
+  "middleName": "Kiran",
+  "lastName": "Nair",
+  "mobileNo": "+919876543288",
+  "rollNo": "AE101A",
+  "address": "ISRO Staff Quarters, Pashan, Pune",
+  "dob": "2006-12-02",
+  "documentUrl": "https://cloud-storage.com"
+}
+
+{
+  "email": "student.kabir@school.com",
+  "password": "KabirStartup99",
+  "firstName": "Kabir",
+  "middleName": "Dev",
+  "lastName": "Mehta",
+  "mobileNo": "+919876543299",
+  "rollNo": "BM101A",
+  "address": "EON IT Park Residences, Kharadi, Pune",
+  "dob": "2005-07-30",
+  "documentUrl": "https://cloud-storage.com"
+}
+
+{
+  "email": "student.amisha@school.com",
+  "password": "AmishaDesh12",
+  "firstName": "Amisha",
+  "middleName": "Bapu",
+  "lastName": "Deshmukh",
+  "mobileNo": "+917774433212",
+  "rollNo": "ST101A",
+  "address": " EL PRO CITY Square, Aurangabad",
+  "dob": "2003-09-12",
+  "documentUrl": "https://cloud-storage.com"
+}
+===================================================================================================================
+COURSES-----------------------------------------------------------------------------------------------------------
+
+{
+  "courseCode": "CS101",
+  "courseName": "Introduction to Java Streams & Hibernate Core",
+  "credits": 4
+}
+
+{
+  "courseCode": "AI301",
+  "courseName": "Machine Learning & Predictive Modeling",
+  "credits": 4
+}
+
+{
+  "courseCode": "ME201",
+  "courseName": "Applied Thermodynamics & Thermal Fluids",
+  "credits": 4
+}
+
+{
+  "courseCode": "EC302",
+  "courseName": "Advanced Digital Signal Processing",
+  "credits": 3
+}
+
+{
+  "courseCode": "CS102",
+  "courseName": "Relational Databases & SQL Optimization",
+  "credits": 4
+}
+
+
+{
+  "courseCode": "CY202",
+  "courseName": "Ethical Hacking & Network Penetration Testing",
+  "credits": 4
+}
+
+
+{
+  "courseCode": "CE101",
+  "courseName": "Structural Analysis & Smart City Designs",
+  "credits": 3
+}
+
+
+{
+  "courseCode": "AE401",
+  "courseName": "Aerodynamics & Rocket Propulsion Systems",
+  "credits": 4
+}
+
+
+{
+  "courseCode": "BM302",
+  "courseName": "Agile Product Management & Tech Strategy",
+  "credits": 3
+}
+
+
+==================================================================================================================
+DEPT------------------------------------------------------------------------------------------------------------
+
+{
+  "departmentName": "Computer Science & Engineering",
+  "hod": "Dr. Alan Turing"
+}
+
+{
+  "departmentName": "Mechanical Engineering",
+  "hod": "Dr. Nikola Tesla"
+}
+
+{
+  "departmentName": "Electronics & Communication Engineering",
+  "hod": "Dr. Guglielmo Marconi"
+}
+
+
+{
+  "departmentName": "Data Science & Artificial Intelligence",
+  "hod": "Dr. Marie Curie"
+}
+
+
+{
+  "departmentName": "Cybersecurity & Network Defense",
+  "hod": "Dr. Linus Torvalds"
+}
+
+
+
+{
+  "departmentName": "Civil & Infrastructure Engineering",
+  "hod": "Dr. Visvesvaraya M."
+}
+
+
+{
+  "departmentName": "Aerospace & Rocket Propulsion",
+  "hod": "Dr. APJ Abdul Kalam"
+}
+
+
+{
+  "departmentName": "Technology Management & Strategy",
+  "hod": "Dr. Steve Jobs"
+}
+

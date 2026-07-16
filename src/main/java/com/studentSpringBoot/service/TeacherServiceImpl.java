@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collector;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.studentSpringBoot.dto.request.TeacherOnboardRequestDto;
@@ -27,9 +28,10 @@ import lombok.RequiredArgsConstructor;
 @Transactional
 @Service
 public class TeacherServiceImpl implements TeacherService{
-	private TeacherRepository teacherRepository;
-	private UserRepository userRepository;
-	private DepartmentRepository departmentRepository;
+	private final TeacherRepository teacherRepository;
+	private final UserRepository userRepository;
+	private final DepartmentRepository departmentRepository;
+	private final PasswordEncoder passwordEncoder;
 	@Override
 	public List<TeacherResponse> getAllTeacher() {
 		List<TeacherResponse> teacherList = teacherRepository.findAll()
@@ -38,6 +40,7 @@ public class TeacherServiceImpl implements TeacherService{
 					TeacherResponse res = new TeacherResponse();
 					res.setUserId(teacher.getUser().getId());
 					res.setDeptId(teacher.getDepartment().getId());
+					res.setTeacherId(teacher.getId());
 					res.setFullName(teacher.getFirstName()+" "+teacher.getMiddleName()+" "+teacher.getLastName());
 					res.setEmail(teacher.getUser().getEmail());
 					res.setDoj(teacher.getDoj());
@@ -59,12 +62,12 @@ public class TeacherServiceImpl implements TeacherService{
 		Department dept = departmentRepository.findById(teacherOnboardRequestDto.getDepartmentId()).orElseThrow(()->new DepartmentNotFoundException("Department with ID: "+teacherOnboardRequestDto.getDepartmentId()+" is not found"));
 		User user = new User();
 		user.setEmail(teacherOnboardRequestDto.getEmail());
-		user.setPassword(teacherOnboardRequestDto.getPassword());
+		user.setPassword(passwordEncoder.encode(teacherOnboardRequestDto.getPassword()));
 		user.setUserRole(UserRole.TEACHER);
 		User savedUser = userRepository.save(user);
 		Teacher teacher = new Teacher();
 		teacher.setFirstName(teacherOnboardRequestDto.getFirstName());
-		teacher.setMiddleName(teacher.getMiddleName());
+		teacher.setMiddleName(teacherOnboardRequestDto.getMiddleName());
 		teacher.setLastName(teacherOnboardRequestDto.getLastName());
 		teacher.setMobileNo(teacherOnboardRequestDto.getMobileNo());
 		teacher.setDob(teacherOnboardRequestDto.getDob());
@@ -73,10 +76,12 @@ public class TeacherServiceImpl implements TeacherService{
 		teacher.setSalary(teacherOnboardRequestDto.getSalary());
 		teacher.setDepartment(dept);
 		teacher.setUser(savedUser);
+		Teacher savedTeacher = teacherRepository.save(teacher);
 		String fullName = teacherOnboardRequestDto.getFirstName()+" "+teacherOnboardRequestDto.getMiddleName()+" "+teacherOnboardRequestDto.getLastName();
 		return new TeacherResponse(
 				savedUser.getId(), 
 				dept.getId(),
+				savedTeacher.getId(),
 				fullName, 
 				teacherOnboardRequestDto.getEmail(),
 				teacherOnboardRequestDto.getDoj(), 
@@ -90,6 +95,7 @@ public class TeacherServiceImpl implements TeacherService{
 		TeacherResponse res = new TeacherResponse();
 		res.setUserId(teacher.getUser().getId());
 		res.setDeptId(teacher.getDepartment().getId());
+		res.setTeacherId(teacher.getId());
 		res.setFullName(teacher.getFirstName()+" "+teacher.getMiddleName()+" "+teacher.getLastName());
 		res.setEmail(teacher.getUser().getEmail());
 		res.setDoj(teacher.getDoj());
@@ -114,6 +120,7 @@ public class TeacherServiceImpl implements TeacherService{
 	                TeacherResponse res = new TeacherResponse();
 	                res.setUserId(teacher.getUser().getId());
 	                res.setDeptId(teacher.getDepartment().getId());
+	                res.setTeacherId(teacher.getId());
 	                res.setFullName(teacher.getFirstName() + " " + teacher.getMiddleName() + " " + teacher.getLastName());
 	                res.setEmail(teacher.getUser().getEmail());
 	                res.setDoj(teacher.getDoj());
